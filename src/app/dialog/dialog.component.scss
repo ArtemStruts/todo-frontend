@@ -1,0 +1,27 @@
+h3 {
+    text-align: center;
+}
+
+.dialog {
+    margin-top: 20px;
+    width: 350px;
+}
+
+.field {
+    width: 100%;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.btn {
+  flex-basis: 175px;
+}
+
+.btn-close {
+    color: white;
+    background: grey;
+}

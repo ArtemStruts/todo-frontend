@@ -1,0 +1,38 @@
+.toolbar {
+    display: flex;
+    justify-content: center;
+}
+ 
+.toolbar-title {
+    font-size: 24px;
+    color: white;
+}
+
+.add-button {
+    position: absolute;
+    right: 15px;
+    top: 5px;
+}
+
+.card-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 50px;
+}
+
+.card-item {
+    margin: 15px;
+    width: 25%;
+}
+
+.card-content {
+    margin-top: 10px;
+}
+
+.checkbox {
+    display: flex;
+    margin-top: 10px;
+    overflow-x: hidden;
+}

@@ -1,0 +1,29 @@
+<h3 mat-dialog-title>Новая задача</h3>
+<mat-divider></mat-divider>
+<div mat-dialog-content class="dialog">
+    <form [formGroup]="taskForm">
+      <p>
+        <mat-form-field class="field">
+          <input matInput placeholder="Название задачи..." formControlName="text">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field class="field">
+          <mat-label>Категория</mat-label>
+          <mat-select formControlName="project_id">
+            <mat-option value="0">Новая категория</mat-option>
+            <mat-option *ngFor="let project of data.projects" value={{project.id}}>{{project.title}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+      <p *ngIf="taskForm.value.project_id === '0'">
+          <mat-form-field class="field">
+            <input id="title" matInput placeholder="Название категории..." formControlName="title">
+          </mat-form-field>
+      </p>
+    </form> 
+</div>
+<div mat-dialog-actions class="buttons">
+  <button mat-flat-button (click)="onNoClick()" class="btn btn-close">Отмена</button>
+  <button mat-flat-button color="primary" [mat-dialog-close]="taskForm.value" class="btn">Ок</button>
+</div>
