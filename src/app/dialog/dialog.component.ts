@@ -1,18 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Project } from '../project';
-
-interface NewTask {
-  text: string,
-  title: string,
-  project_id: number,
-}
-
-interface DialogData {
-  projects: Project[],
-  newTask: NewTask,
-}
+import { Project } from '../models/project';
+import { DialogData } from '../models/dialogData';
 
 @Component({
   selector: 'app-dialog',

@@ -17,7 +17,7 @@
     <mat-divider></mat-divider>
     <mat-card-content class="card-content">
       <div *ngFor="let todo of project.sortTodo()" class="checkbox">
-        <mat-checkbox id={{todo.id}} [checked]="todo.is_completed" color="primary" class="check" (change)="onComplete(todo)">
+        <mat-checkbox id={{todo.id}} [checked]="todo.is_completed" color="primary" class="check" (change)="checkTodo(todo)">
           <span class="todo-text" *ngIf="!todo.is_completed">{{todo.text}}</span>
           <span class="todo-text" *ngIf="todo.is_completed"><del>{{todo.text}}</del></span>
         </mat-checkbox>

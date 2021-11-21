@@ -17,11 +17,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogComponent } from './dialog/dialog.component';
+import { TodoListComponent } from './todo-list/todo-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DialogComponent,
+    TodoListComponent,
   ],
   entryComponents: [DialogComponent],
   imports: [
