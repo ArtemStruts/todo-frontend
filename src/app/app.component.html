@@ -10,18 +10,8 @@
 </mat-toolbar>
 
 <div class="card-container">
-  <mat-card *ngFor="let project of projects" class="card-item">
-    <mat-card-header>
-      <mat-card-title class="card-title">{{project.title}}</mat-card-title>
-    </mat-card-header>
-    <mat-divider></mat-divider>
-    <mat-card-content class="card-content">
-      <div *ngFor="let todo of project.sortTodo()" class="checkbox">
-        <mat-checkbox id={{todo.id}} [checked]="todo.is_completed" color="primary" class="check" (change)="checkTodo(todo)">
-          <span class="todo-text" *ngIf="!todo.is_completed">{{todo.text}}</span>
-          <span class="todo-text" *ngIf="todo.is_completed"><del>{{todo.text}}</del></span>
-        </mat-checkbox>
-      </div>
-    </mat-card-content>
-  </mat-card>
+  <app-todo-list *ngFor="let project of projects"
+  [project]="project"
+  (toggleComplete)="onToggleTodoComplete($event)"
+  ></app-todo-list>
 </div>

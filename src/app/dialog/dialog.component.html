@@ -25,5 +25,5 @@
 </div>
 <div mat-dialog-actions class="buttons">
   <button mat-flat-button (click)="onNoClick()" class="btn btn-close">Отмена</button>
-  <button mat-flat-button color="primary" [mat-dialog-close]="taskForm.value" class="btn">Ок</button>
+  <button mat-flat-button [disabled]="taskForm.invalid" color="primary" [mat-dialog-close]="taskForm.value" class="btn">Ок</button>
 </div>

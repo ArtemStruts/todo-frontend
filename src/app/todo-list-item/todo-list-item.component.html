@@ -1,0 +1,4 @@
+<mat-checkbox id={{todo.id}} [checked]="todo.is_completed" color="primary" class="check" (change)="toggleTodoComplete(todo)">
+    <span class="todo-text" *ngIf="!todo.is_completed">{{todo.text}}</span>
+    <span class="todo-text" *ngIf="todo.is_completed"><del>{{todo.text}}</del></span>
+</mat-checkbox>

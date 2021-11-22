@@ -18,12 +18,11 @@ export class AppComponent implements OnInit{
   
   newTask!: NewTask;
   projects!: Project[];
-  baseUrl: string = 'http://127.0.0.1:3000';
+  baseUrl: string = 'https://enigmatic-woodland-85636.herokuapp.com';
 
   getProjects() {
     this.TodoDataService.get(this.baseUrl + '/projects')
       .subscribe(projectList => {
-        console.log(projectList);
         this.projects = plainToClass(Project, projectList)
       });
   }
@@ -34,24 +33,29 @@ export class AppComponent implements OnInit{
     });
     dialogRef.afterClosed().subscribe(result => {
       this.newTask = result;
-      this.testPost();
+      this.onAddTodo();
     });
   }
 
-  checkTodo(todo: Todo) {
+  onToggleTodoComplete(todo: Todo) {
     this.TodoDataService.patch(this.baseUrl + '/projects/' + todo.project_id + '/todo/' + todo.id, null)
       .subscribe((res) => {
-        console.log(res);
-        this.getProjects();
+        const project = this.projects.filter((p) => p.id === todo.project_id)[0];
+        const updatedTodo = project.todos.filter((t) => t.id === todo.id)[0];
+        updatedTodo.is_completed = res.is_completed;
       });
   }
 
-  testPost() {
+  onAddTodo() {
     if (this.newTask && this.newTask.project_id && this.newTask.text) {
       this.TodoDataService.post(this.baseUrl + '/todos', this.newTask)
         .subscribe((res) => {
-          console.log(res);
-          this.getProjects();
+          const project = this.projects.filter((p) => p.id === res.id)[0];
+          if (project) {
+            project.todos = res.todos;
+          } else {
+            this.projects.push(plainToClass(Project, res));
+          }
         });
     }
   }
