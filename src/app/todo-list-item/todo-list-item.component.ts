@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Todo } from '../models/project';
+import { TodoDataService } from '../services/todo-data.service';
 
 @Component({
   selector: 'app-todo-list-item',
@@ -11,12 +12,15 @@ export class TodoListItemComponent {
   @Input()
   todo!: Todo;
 
-  @Output()
-  toggleComplete: EventEmitter<Todo> = new EventEmitter();
+  baseUrl: string = 'https://enigmatic-woodland-85636.herokuapp.com';
 
-  constructor() {}
+  constructor(private TodoDataService: TodoDataService) {}
 
   toggleTodoComplete(todo: Todo) {
-    this.toggleComplete.emit(todo);
+    this.TodoDataService.patch(this.baseUrl + '/projects/' + todo.project_id + '/todo/' + todo.id, null)
+      .subscribe((res) => {
+        this.todo.is_completed = res.is_completed;
+      });
   }
+
 }

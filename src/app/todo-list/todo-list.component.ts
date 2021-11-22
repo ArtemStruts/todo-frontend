@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Project, Todo } from '../models/project';
+import { Component, Input } from '@angular/core';
+import { Project } from '../models/project';
 
 @Component({
   selector: 'app-todo-list',
@@ -11,13 +11,6 @@ export class TodoListComponent {
   @Input()
   project!: Project;
 
-  @Output()
-  toggleComplete: EventEmitter<Todo> = new EventEmitter();
-
   constructor() {}
-
-  onToggleTodoComplete(todo: Todo) {
-    this.toggleComplete.emit(todo);
-  }
 
 }

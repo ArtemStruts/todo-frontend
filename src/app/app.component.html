@@ -12,6 +12,5 @@
 <div class="card-container">
   <app-todo-list *ngFor="let project of projects"
   [project]="project"
-  (toggleComplete)="onToggleTodoComplete($event)"
   ></app-todo-list>
 </div>

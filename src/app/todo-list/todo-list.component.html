@@ -8,7 +8,6 @@
             <div class="checkbox">
                 <app-todo-list-item *ngFor="let todo of project.sortTodo()"
                 [todo]="todo"
-                (toggleComplete)="onToggleTodoComplete($event)"
                 ></app-todo-list-item>
             </div>
         </mat-card-content>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { plainToClass } from 'class-transformer';
 import { DialogComponent } from './dialog/dialog.component';
-import { Project, Todo } from './models/project';
+import { Project } from './models/project';
 import { NewTask } from './models/newTask';
 import { TodoDataService } from './services/todo-data.service';
 
@@ -37,17 +37,8 @@ export class AppComponent implements OnInit{
     });
   }
 
-  onToggleTodoComplete(todo: Todo) {
-    this.TodoDataService.patch(this.baseUrl + '/projects/' + todo.project_id + '/todo/' + todo.id, null)
-      .subscribe((res) => {
-        const project = this.projects.filter((p) => p.id === todo.project_id)[0];
-        const updatedTodo = project.todos.filter((t) => t.id === todo.id)[0];
-        updatedTodo.is_completed = res.is_completed;
-      });
-  }
-
   onAddTodo() {
-    if (this.newTask && this.newTask.project_id && this.newTask.text) {
+    if (this.newTask) {
       this.TodoDataService.post(this.baseUrl + '/todos', this.newTask)
         .subscribe((res) => {
           const project = this.projects.filter((p) => p.id === res.id)[0];
@@ -57,7 +48,7 @@ export class AppComponent implements OnInit{
             this.projects.push(plainToClass(Project, res));
           }
         });
-    }
+      }
   }
 
   ngOnInit() {
